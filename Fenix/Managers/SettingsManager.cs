@@ -1,11 +1,59 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace Fenix.Managers
 {
-    class SettingsManager
+    public class SettingsManager
     {
+        private Dictionary<string, object> _values = new Dictionary<string, object>();
+
+        public SettingsManager()
+        {
+            SetDefaults();
+        }
+
+        public void Save()
+        {
+
+        }
+
+        public void Load()
+        {
+            _values = new Dictionary<string, object>();
+        }
+
+        private void SetDefaults()
+        {
+            Set("Graphics.Window.Width", 854);
+            Set("Graphics.Window.Height", 480);
+            Set("Graphics.Window.Fullscreen", false);
+
+            Set("Graphics.Virtual.Width", 1280);
+            Set("Graphics.Virtual.Height", 720);
+        }
+
+        public void Set(string key, object value)
+        {
+            _values[key] = value;
+        }
+
+        public T Get<T>(string key)
+        {
+            if (!_values.ContainsKey(key))
+                return default(T);
+            else if (_values[key] is T)
+                return (T)_values[key];
+            else
+            {
+                try
+                {
+                    return (T)Convert.ChangeType(_values[key], typeof(T));
+                }
+                catch (InvalidCastException)
+                {
+                    return default(T);
+                }
+            }
+        }
     }
 }
