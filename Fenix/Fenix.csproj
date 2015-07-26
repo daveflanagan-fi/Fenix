@@ -59,8 +59,28 @@
     <Reference Include="System.Net" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="Engine.cs" />
+    <Compile Include="EngineHelper.cs" />
+    <Compile Include="GameObjects\GameObject.cs" />
+    <Compile Include="GameObjects\UIObjects\Button.cs" />
+    <Compile Include="GameObjects\UIObjects\Control.cs" />
+    <Compile Include="GameObjects\UIObjects\Label.cs" />
+    <Compile Include="GameObjects\UIObjects\ListView.cs" />
+    <Compile Include="GameObjects\UIObjects\PictureBox.cs" />
+    <Compile Include="GameObjects\UIObjects\ScrollBar.cs" />
+    <Compile Include="GameObjects\UIObjects\Textarea.cs" />
+    <Compile Include="GameObjects\UIObjects\Textbox.cs" />
+    <Compile Include="Managers\AudioManager.cs" />
+    <Compile Include="Managers\ContentManager.cs" />
+    <Compile Include="Managers\ScreenManager.cs" />
+    <Compile Include="Managers\SettingsManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="GameComponents\" />
+    <Folder Include="GameScreens\" />
+    <Folder Include="Graphics\" />
+    <Folder Include="Utilities\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\Microsoft.Xna.GameStudio.targets" />
