@@ -1,3 +1,5 @@
+using Fenix.Test.GameScreens;
+
 namespace Fenix.Test
 {
 #if WINDOWS || XBOX
@@ -5,7 +7,7 @@ namespace Fenix.Test
     {
         static void Main(string[] args)
         {
-            Engine.Run();
+            Engine.Run(new BackgroundScreen());
         }
     }
 #endif

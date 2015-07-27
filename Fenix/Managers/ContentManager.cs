@@ -5,7 +5,10 @@ using System.Text;
 
 namespace Fenix.Managers
 {
-    class ContentManager
+    public class ContentManager : Microsoft.Xna.Framework.Content.ContentManager
     {
+        public ContentManager()
+            : base(Engine.Services)
+        { }
     }
 }

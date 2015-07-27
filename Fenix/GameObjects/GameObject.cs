@@ -13,6 +13,7 @@ namespace Fenix.GameObjects
         public string Name { get; set; }
         public bool Enabled { get; set; }
         public bool Visible { get; set; }
+        public float Depth { get; set; }
 
         public Vector2 Position
         {

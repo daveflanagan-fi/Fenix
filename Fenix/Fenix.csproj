@@ -61,6 +61,7 @@
   <ItemGroup>
     <Compile Include="Debug\Console.cs" />
     <Compile Include="Debug\FPSCounter.cs" />
+    <Compile Include="Debug\LocalizationInfo.cs" />
     <Compile Include="Debug\TimeRuler.cs" />
     <Compile Include="Engine.cs" />
     <Compile Include="EngineHelper.cs" />
@@ -79,11 +80,13 @@
     <Compile Include="Managers\AudioManager.cs" />
     <Compile Include="Managers\ContentManager.cs" />
     <Compile Include="Managers\DebugManager.cs" />
+    <Compile Include="Managers\InputManager.cs" />
     <Compile Include="Managers\ScreenManager.cs" />
     <Compile Include="Managers\SettingsManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="AI\" />
     <Folder Include="Utilities\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
