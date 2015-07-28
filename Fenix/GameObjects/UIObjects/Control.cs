@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Fenix.Graphics;
+using Microsoft.Xna.Framework;
 
 namespace Fenix.GameObjects.UIObjects
 {

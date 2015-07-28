@@ -58,6 +58,7 @@ namespace Fenix
             ClearColor = Color.Black;
             SpriteBatch = new SpriteBatch(GraphicsDevice);
             UISheet = new SpriteSheet("Content/Textures/UI.xml");
+            DefaultFont = Contents.Load<SpriteFont>("Content/Fonts/Default");
             BlankTexture = new Texture2D(GraphicsDevice, 1, 1);
             BlankTexture.SetData(new Color[1] { Color.White });
             Buffer = new RenderTarget2D(GraphicsDevice, Settings.Get<int>("Graphics.Virtual.Width"), Settings.Get<int>("Graphics.Virtual.Height"));
