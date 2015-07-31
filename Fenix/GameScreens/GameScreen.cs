@@ -24,8 +24,9 @@ namespace Fenix.GameScreens
         public float TransitionPosition { get; protected set; }
         public ScreenState ScreenState { get; protected set; }
         public bool IsExiting { get; internal set; }
-        public PlayerIndex? ControllingPlayer { get; internal set; }
         public List<GameObject> Objects { get; private set; }
+        public int Width { get { return Engine.Settings.Get<int>("Graphics.Virtual.Width"); } }
+        public int Height { get { return Engine.Settings.Get<int>("Graphics.Virtual.Height"); } }
 
         public float TransitionAlpha
         {
@@ -38,6 +39,7 @@ namespace Fenix.GameScreens
 
         public GameScreen()
         {
+            IsPopup = false;
             TransitionPosition = 1;
             Objects = new List<GameObject>();
         }
@@ -102,7 +104,18 @@ namespace Fenix.GameScreens
             return true;
         }
         
-        public virtual void HandleInput() { }
+        public virtual void HandleInput()
+        {
+            foreach (GameObject obj in Objects)
+                obj.DoInput();
+        }
+
+        public virtual void PreDraw()
+        {
+            foreach (GameObject obj in Objects)
+                obj.DoPreDraw();
+        }
+
         public virtual void Draw()
         {
             foreach (GameObject obj in Objects)

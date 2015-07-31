@@ -60,9 +60,9 @@
 	<SubTexture name="cursorGauntlet_blue.png" x="30" y="482" width="30" height="30"/>
 	<SubTexture name="cursorGauntlet_bronze.png" x="0" y="482" width="30" height="30"/>
 	<SubTexture name="cursorGauntlet_grey.png" x="60" y="482" width="30" height="30"/>
-	<SubTexture name="cursorHand_beige.png" x="90" y="482" width="27" height="28"/>
-	<SubTexture name="cursorHand_blue.png" x="117" y="482" width="27" height="28"/>
-	<SubTexture name="cursorHand_grey.png" x="144" y="482" width="27" height="28"/>
+	<SubTexture name="cursorHand_beige" x="90" y="482" width="27" height="28"/>
+	<SubTexture name="cursorHand_blue" x="117" y="482" width="27" height="28"/>
+	<SubTexture name="cursorHand_grey" x="144" y="482" width="27" height="28"/>
 	<SubTexture name="cursorSword_bronze.png" x="338" y="331" width="34" height="37"/>
 	<SubTexture name="cursorSword_gold.png" x="338" y="294" width="34" height="37"/>
 	<SubTexture name="cursorSword_silver.png" x="335" y="152" width="34" height="37"/>
@@ -106,5 +106,8 @@
   <SubTexture name="ButtonBottomEdgeHover" x="10" y="178" width="1" height="10" />
   <SubTexture name="ButtonRightEdgeHover" x="180" y="153" width="10" height="1" />
   <SubTexture name="ButtonInnerHover" x="10" y="153" width="1" height="1" />
+
+  <SubTexture name="LevelSelectEven" x="200" y="110" width="1" height="1" />
+  <SubTexture name="LevelSelectOdd" x="10" y="386" width="1" height="1" />
 
 </TextureAtlas>

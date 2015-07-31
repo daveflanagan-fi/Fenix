@@ -9,10 +9,18 @@ namespace Fenix.Managers
         public KeyboardState LastKeyboard { get; private set; }
         public MouseState CurrentMouse { get; private set; }
         public MouseState LastMouse { get; private set; }
+        public bool DrawCursor { get; set; }
 
-        public Point CurrentMousePosition { get { return new Point(CurrentMouse.X, CurrentMouse.Y); } }
-        public Point LastMousePosition { get { return new Point(LastMouse.X, LastMouse.Y); } }
+        public Point CurrentMousePosition { get { return new Point((int)(CurrentMouse.X * WidthRatio), (int)(CurrentMouse.Y * HeightRatio)); } }
+        public Point LastMousePosition { get { return new Point((int)(LastMouse.X * WidthRatio), (int)(LastMouse.Y * HeightRatio)); } }
         public Point MouseDelta { get { return new Point(LastMouse.X - CurrentMouse.X, LastMouse.Y - CurrentMouse.Y); } }
+        public float WidthRatio { get { return Engine.Settings.Get<float>("Graphics.Virtual.Width") / Engine.Settings.Get<float>("Graphics.Window.Width"); } }
+        public float HeightRatio { get { return Engine.Settings.Get<float>("Graphics.Virtual.Height") / Engine.Settings.Get<float>("Graphics.Window.Height"); } }
+
+        public InputManager()
+        {
+            DrawCursor = true;
+        }
 
         internal void Update()
         {
@@ -21,6 +29,16 @@ namespace Fenix.Managers
 
             LastMouse = CurrentMouse;
             CurrentMouse = Mouse.GetState();
+        }
+
+        internal void Draw()
+        {
+            if (DrawCursor)
+            {
+                Engine.SpriteBatch.Begin();
+                Engine.SpriteBatch.Draw(Engine.UISheet.Texture, new Vector2(CurrentMouse.X * WidthRatio, CurrentMouse.Y * HeightRatio), Engine.UISheet["cursorHand_beige"], Color.White);
+                Engine.SpriteBatch.End();
+            }
         }
 
         public bool IsLeftPress()

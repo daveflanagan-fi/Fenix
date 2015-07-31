@@ -7,6 +7,6 @@ namespace Fenix.GameObjects.UIObjects
 {
     public class ScrollBar : Control
     {
-        public int ScrollPosition { get; set; }
+        public float ScrollPosition { get; set; }
     }
 }

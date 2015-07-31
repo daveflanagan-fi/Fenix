@@ -26,9 +26,21 @@ namespace Fenix.GameObjects.UIObjects
             Tint = tint;
         }
 
-        protected override void Draw()
+        public void SetTint(Color color)
         {
-            if (Image != null) Engine.SpriteBatch.Draw(Image, Bounds, Tint);
+            if (Tint == color) return;
+            Tint = color;
+            NeedsRedraw = true;
+        }
+
+        protected override void Redraw()
+        {
+            if (Image != null)
+            {
+                Engine.SpriteBatch.Begin();
+                Engine.SpriteBatch.Draw(Image, new Rectangle(0, 0, (int)Size.X, (int)Size.Y), Tint);
+                Engine.SpriteBatch.End();
+            }
         }
     }
 }

@@ -7,7 +7,7 @@ namespace Fenix.Test
     {
         static void Main(string[] args)
         {
-            Engine.Run(new BackgroundScreen());
+            Engine.Run(new BackgroundScreen(), new MainMenuScreen());
         }
     }
 #endif

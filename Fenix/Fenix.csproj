@@ -70,6 +70,8 @@
     <Compile Include="GameObjects\UIObjects\Control.cs" />
     <Compile Include="GameObjects\UIObjects\Label.cs" />
     <Compile Include="GameObjects\UIObjects\ListView.cs" />
+    <Compile Include="GameObjects\UIObjects\ListViewItem.cs" />
+    <Compile Include="GameObjects\UIObjects\Panel.cs" />
     <Compile Include="GameObjects\UIObjects\PictureBox.cs" />
     <Compile Include="GameObjects\UIObjects\ScrollBar.cs" />
     <Compile Include="GameObjects\UIObjects\Textarea.cs" />

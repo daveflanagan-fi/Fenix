@@ -54,6 +54,16 @@ namespace Fenix.Managers
             }
         }
 
+        internal void PreDraw()
+        {
+            foreach (GameScreen screen in screens)
+            {
+                if (screen.ScreenState == ScreenState.Hidden)
+                    continue;
+                screen.PreDraw();
+            }
+        }
+
         internal void Draw()
         {
             foreach (GameScreen screen in screens)
@@ -63,10 +73,9 @@ namespace Fenix.Managers
                 screen.Draw();
             }
         }
-        
-        public void Add(GameScreen screen, PlayerIndex? controllingPlayer)
+
+        public void Add(GameScreen screen)
         {
-            screen.ControllingPlayer = controllingPlayer;
             screen.IsExiting = false;
             
             if (isInitialized)

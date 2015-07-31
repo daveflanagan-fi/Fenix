@@ -43,7 +43,7 @@ namespace Fenix
             Graphics.IsFullScreen = Settings.Get<bool>("Graphics.Window.Fullscreen");
 
             foreach (GameScreen screen in screens)
-                Screens.Add(screen, null);
+                Screens.Add(screen);
 
             Game.Run();
         }
@@ -80,11 +80,11 @@ namespace Fenix
         internal static void Draw(GameTime gameTime)
         {
             GameTime = gameTime;
+            Screens.PreDraw();
             GraphicsDevice.SetRenderTarget(Buffer);
             GraphicsDevice.Clear(ClearColor);
-            SpriteBatch.Begin();
             Screens.Draw();
-            SpriteBatch.End();
+            Inputs.Draw();
 
             GraphicsDevice.SetRenderTarget(null);
             SpriteBatch.Begin();

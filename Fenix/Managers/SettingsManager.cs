@@ -28,8 +28,8 @@ namespace Fenix.Managers
             Set("Graphics.Window.Height", 480);
             Set("Graphics.Window.Fullscreen", false);
 
-            Set("Graphics.Virtual.Width", 640);
-            Set("Graphics.Virtual.Height", 960);
+            Set("Graphics.Virtual.Width", 320);
+            Set("Graphics.Virtual.Height", 480);
         }
 
         public void Set(string key, object value)
