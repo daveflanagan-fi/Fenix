@@ -13,6 +13,12 @@ namespace Fenix.GameObjects.UIObjects
         public Color BackColor { get; set; }
         public SpriteFont Font { get; set; }
         public int ItemsHeight { get; private set; }
+
+        public delegate void ListViewItemSelectedHandler(ListViewItem item, int index);
+        public event ListViewItemSelectedHandler OnItemSelected;
+
+        private bool _moved = false;
+        private float _velocity = 0;
         
         public ListView()
         {
@@ -28,11 +34,53 @@ namespace Fenix.GameObjects.UIObjects
 
             if (Engine.Inputs.IsLeftPress())
             {
-                ScrollPosition += Engine.Inputs.MouseDelta.Y;
-                NeedsRedraw = true;
+                if (Engine.Inputs.MouseDelta.Y != 0)
+                {
+                    _moved = true;
+                    ScrollPosition += Engine.Inputs.MouseDelta.Y;
+                    _velocity = Engine.Inputs.MouseVelocity.Y;
+                    NeedsRedraw = true;
+                }
+            }
+            else
+            {
+                if (_velocity != 0)
+                {
+                    _velocity *= 0.9f;
+                    ScrollPosition += _velocity * (float)Engine.GameTime.ElapsedGameTime.TotalSeconds * 10;
+                    NeedsRedraw = true;
+                }
+                if (!Engine.Inputs.WasLeftPress())
+                    _moved = false;
             }
 
             ScrollPosition = (int)MathHelper.Clamp(ScrollPosition, 0, ItemsHeight - Bounds.Height);
+        }
+
+        protected override void HandleInput()
+        {
+            if (Engine.Inputs.IsLeftClick() && !_moved)
+            {
+                if (OnItemSelected != null)
+                {
+                    Rectangle p = new Rectangle(Engine.Inputs.CurrentMousePosition.X, Engine.Inputs.CurrentMousePosition.Y, 1, 1);
+                    p.X += VirtualBounds.X;
+                    p.Y += VirtualBounds.Y;
+
+                    int y = 0 - (int)ScrollPosition;
+                    for (int i = 0; i < Children.Count; i++)
+                    {
+                        ListViewItem child = Children[i] as ListViewItem;
+                        Rectangle r = new Rectangle(0, y, Bounds.Width, child.Height);
+                        if (r.Intersects(p))
+                        {
+                            OnItemSelected(child, i);
+                            break;
+                        }
+                        y += child.Height;
+                    }
+                }
+            }
         }
 
         public override void AddChild(GameObject child)
@@ -61,7 +109,7 @@ namespace Fenix.GameObjects.UIObjects
                     DrawItem(i, new Point(0, y));
                 y += child.Height;
             }
-            ItemsHeight = y + 60;
+            ItemsHeight = y + (int)ScrollPosition;
             Engine.SpriteBatch.End();
         }
 

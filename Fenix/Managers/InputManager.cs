@@ -11,11 +11,14 @@ namespace Fenix.Managers
         public MouseState LastMouse { get; private set; }
         public bool DrawCursor { get; set; }
 
+        public Vector2 MouseVelocity { get { return (_mouseDeltas[0] + _mouseDeltas[1] + _mouseDeltas[2]) / 3; } }
         public Point CurrentMousePosition { get { return new Point((int)(CurrentMouse.X * WidthRatio), (int)(CurrentMouse.Y * HeightRatio)); } }
         public Point LastMousePosition { get { return new Point((int)(LastMouse.X * WidthRatio), (int)(LastMouse.Y * HeightRatio)); } }
         public Point MouseDelta { get { return new Point(LastMouse.X - CurrentMouse.X, LastMouse.Y - CurrentMouse.Y); } }
         public float WidthRatio { get { return Engine.Settings.Get<float>("Graphics.Virtual.Width") / Engine.Settings.Get<float>("Graphics.Window.Width"); } }
         public float HeightRatio { get { return Engine.Settings.Get<float>("Graphics.Virtual.Height") / Engine.Settings.Get<float>("Graphics.Window.Height"); } }
+
+        private Vector2[] _mouseDeltas = new Vector2[3];
 
         public InputManager()
         {
@@ -29,6 +32,10 @@ namespace Fenix.Managers
 
             LastMouse = CurrentMouse;
             CurrentMouse = Mouse.GetState();
+
+            for (int i = 0; i < _mouseDeltas.Length - 1; i++)
+                _mouseDeltas[i] = _mouseDeltas[i + 1];
+            _mouseDeltas[_mouseDeltas.Length - 1] = new Vector2(MouseDelta.X, MouseDelta.Y);
         }
 
         internal void Draw()
@@ -44,6 +51,11 @@ namespace Fenix.Managers
         public bool IsLeftPress()
         {
             return CurrentMouse.LeftButton == ButtonState.Pressed;
+        }
+
+        public bool WasLeftPress()
+        {
+            return LastMouse.LeftButton == ButtonState.Pressed;
         }
 
         public bool IsLeftClick()
