@@ -65,17 +65,6 @@
     <Compile Include="Debug\TimeRuler.cs" />
     <Compile Include="Engine.cs" />
     <Compile Include="EngineHelper.cs" />
-    <Compile Include="GameObjects\GameObject.cs" />
-    <Compile Include="GameObjects\UIObjects\Button.cs" />
-    <Compile Include="GameObjects\UIObjects\Control.cs" />
-    <Compile Include="GameObjects\UIObjects\Label.cs" />
-    <Compile Include="GameObjects\UIObjects\ListView.cs" />
-    <Compile Include="GameObjects\UIObjects\ListViewItem.cs" />
-    <Compile Include="GameObjects\UIObjects\Panel.cs" />
-    <Compile Include="GameObjects\UIObjects\PictureBox.cs" />
-    <Compile Include="GameObjects\UIObjects\ScrollBar.cs" />
-    <Compile Include="GameObjects\UIObjects\Textarea.cs" />
-    <Compile Include="GameObjects\UIObjects\Textbox.cs" />
     <Compile Include="GameScreens\GameScreen.cs" />
     <Compile Include="GameScreens\LoadingScreen.cs" />
     <Compile Include="Graphics\SpriteSheet.cs" />

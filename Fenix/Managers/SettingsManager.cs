@@ -24,12 +24,12 @@ namespace Fenix.Managers
 
         private void SetDefaults()
         {
-            Set("Graphics.Window.Width", 320);
-            Set("Graphics.Window.Height", 480);
+            Set("Graphics.Window.Width", 640);
+            Set("Graphics.Window.Height", 960);
             Set("Graphics.Window.Fullscreen", false);
 
-            Set("Graphics.Virtual.Width", 320);
-            Set("Graphics.Virtual.Height", 480);
+            Set("Graphics.Virtual.Width", 640);
+            Set("Graphics.Virtual.Height", 960);
         }
 
         public void Set(string key, object value)

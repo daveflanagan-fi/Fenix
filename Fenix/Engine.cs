@@ -11,7 +11,7 @@ namespace Fenix
         public static Game Game { get; private set; }
         public static SpriteBatch SpriteBatch { get; private set; }
         public static GameTime GameTime { get; private set; }
-        public static Color ClearColor { get; private set; }
+        public static Color ClearColor { get; set; }
         public static SpriteSheet UISheet { get; private set; }
         public static Texture2D BlankTexture { get; private set; }
         public static SpriteFont DefaultFont { get; private set; }
@@ -83,8 +83,10 @@ namespace Fenix
             Screens.PreDraw();
             GraphicsDevice.SetRenderTarget(Buffer);
             GraphicsDevice.Clear(ClearColor);
+            SpriteBatch.Begin();
             Screens.Draw();
             Inputs.Draw();
+            SpriteBatch.End();
 
             GraphicsDevice.SetRenderTarget(null);
             SpriteBatch.Begin();

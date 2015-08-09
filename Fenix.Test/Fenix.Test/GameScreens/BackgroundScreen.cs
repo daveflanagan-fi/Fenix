@@ -1,5 +1,4 @@
-﻿using Fenix.GameObjects.UIObjects;
-using Fenix.GameScreens;
+﻿using Fenix.GameScreens;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -8,7 +7,7 @@ namespace Fenix.Test.GameScreens
 {
     public class BackgroundScreen : GameScreen
     {
-        PictureBox pb;
+        Texture2D background;
 
         public BackgroundScreen()
         {
@@ -18,16 +17,17 @@ namespace Fenix.Test.GameScreens
 
         public override void LoadContent()
         {
-            pb = new PictureBox();
-            pb.Image = Engine.Contents.Load<Texture2D>("Content/Textures/Background");
-            pb.SetSize(Width, Height);
-            Add(pb);
+            background = Engine.Contents.Load<Texture2D>("Content/Textures/Background");
         }
 
         public override void Update(bool otherScreenHasFocus, bool coveredByOtherScreen)
         {
             base.Update(otherScreenHasFocus, false);
-            pb.SetTint(Color.White * TransitionAlpha);
+        }
+
+        public override void Draw()
+        {
+            Engine.SpriteBatch.Draw(background, new Rectangle(0, 0, Engine.Settings.Get<int>("Graphics.Virtual.Width"), Engine.Settings.Get<int>("Graphics.Virtual.Height")), Color.White * TransitionAlpha);
         }
     }
 }

@@ -1,5 +1,4 @@
-﻿using Fenix.GameObjects;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 
@@ -16,7 +15,6 @@ namespace Fenix.GameScreens
     public abstract class GameScreen
     {
         bool otherScreenHasFocus;
-        private List<GameObject> objectsToUpdate = new List<GameObject>();
 
         public bool IsPopup { get; set; }
         public TimeSpan TransitionOnTime { get; protected set; }
@@ -24,7 +22,6 @@ namespace Fenix.GameScreens
         public float TransitionPosition { get; protected set; }
         public ScreenState ScreenState { get; protected set; }
         public bool IsExiting { get; internal set; }
-        public List<GameObject> Objects { get; private set; }
         public int Width { get { return Engine.Settings.Get<int>("Graphics.Virtual.Width"); } }
         public int Height { get { return Engine.Settings.Get<int>("Graphics.Virtual.Height"); } }
 
@@ -41,7 +38,6 @@ namespace Fenix.GameScreens
         {
             IsPopup = false;
             TransitionPosition = 1;
-            Objects = new List<GameObject>();
         }
         
         public virtual void LoadContent() { }
@@ -71,17 +67,6 @@ namespace Fenix.GameScreens
                 else
                     ScreenState = ScreenState.Active;
             }
-
-            objectsToUpdate.Clear();
-            foreach (GameObject obj in Objects)
-                objectsToUpdate.Add(obj);
-            
-            while (objectsToUpdate.Count > 0)
-            {
-                GameObject obj = objectsToUpdate[objectsToUpdate.Count - 1];
-                objectsToUpdate.RemoveAt(objectsToUpdate.Count - 1);
-                obj.DoUpdate();
-            }
         }
         
         bool UpdateTransition(TimeSpan time, int direction)
@@ -103,24 +88,12 @@ namespace Fenix.GameScreens
             
             return true;
         }
-        
-        public virtual void HandleInput()
-        {
-            foreach (GameObject obj in Objects)
-                obj.DoInput();
-        }
 
-        public virtual void PreDraw()
-        {
-            foreach (GameObject obj in Objects)
-                obj.DoPreDraw();
-        }
+        public virtual void HandleInput() { }
 
-        public virtual void Draw()
-        {
-            foreach (GameObject obj in Objects)
-                obj.DoDraw();
-        }
+        public virtual void PreDraw() { }
+
+        public virtual void Draw() { }
         
         public void ExitScreen()
         {
@@ -128,17 +101,6 @@ namespace Fenix.GameScreens
                 Engine.Screens.Remove(this);
             else
                 IsExiting = true;
-        }
-
-        public void Add(GameObject obj)
-        {
-            Objects.Add(obj);
-        }
-
-        public void Remove(GameObject obj)
-        {
-            Objects.Remove(obj);
-            objectsToUpdate.Remove(obj);
         }
     }
 }

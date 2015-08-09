@@ -41,11 +41,7 @@ namespace Fenix.Managers
         internal void Draw()
         {
             if (DrawCursor)
-            {
-                Engine.SpriteBatch.Begin();
-                Engine.SpriteBatch.Draw(Engine.UISheet.Texture, new Vector2(CurrentMouse.X * WidthRatio, CurrentMouse.Y * HeightRatio), Engine.UISheet["cursorHand_beige"], Color.White);
-                Engine.SpriteBatch.End();
-            }
+                Engine.SpriteBatch.Draw(Engine.UISheet.Texture, new Vector2(CurrentMouse.X * WidthRatio, CurrentMouse.Y * HeightRatio), Engine.UISheet["Cursor"], Color.White);
         }
 
         public bool IsLeftPress()

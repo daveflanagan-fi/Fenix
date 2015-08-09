@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Fenix.GameObjects.UIObjects
+namespace Fenix.Test.GameScreens.Components
 {
-    class Textbox
+    public class Button
     {
     }
 }
